@@ -124,8 +124,12 @@
   #(- % dec-by))
 
 ;; ----------
-;; @TODO Exercise 4.
+;; Exercise 4.
 ;; Write a function, mapset, that works like map except the return value is a set:
 ;;
 ;; (mapset inc [1 1 2 2]) => #{2 3}
 ;; ----------
+(defn mapset
+  "Works like map except the return value is a set"
+  [f l]
+  (set (map f l)))
