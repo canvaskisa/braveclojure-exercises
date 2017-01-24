@@ -133,3 +133,34 @@
   "Works like map except the return value is a set"
   [f l]
   (set (map f l)))
+
+;; ----------
+;; Exercise 5.
+;; Create a function that’s similar to symmetrize-body-parts except that it has to work
+;; with weird space aliens with radial symmetry.
+;; Instead of two eyes, arms, legs, and so on, they have five.
+;; ----------
+(def asym-alien-body-parts [{:name "head" :size 3}
+                            {:name "0-deg-eye" :size 1}
+                            {:name "0-deg-ear" :size 1}
+                            {:name "mouth" :size 1}
+                            {:name "nose" :size 1}])
+(defn matching-weird-part
+  "Expects a map of :name and :size.
+   Replaces left- to the right- in the name value"
+  [part to]
+  {:name (clojure.string/replace (:name part) #"^0" to)
+   :size (:size part)})
+
+(defn weird-symmetrize-body-parts
+  "Symmetrizes body parts radially"
+  [asym-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part
+                                         (matching-weird-part part (str 72))
+                                         (matching-weird-part part (str (* 72 2)))
+                                         (matching-weird-part part (str (* 72 3)))
+                                         (matching-weird-part part (str (* 72 4)))
+                                         (matching-weird-part part (str (* 72 5)))])))
+          []
+          asym-body-parts))
