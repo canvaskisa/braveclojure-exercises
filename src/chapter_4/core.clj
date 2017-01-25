@@ -70,3 +70,16 @@
 (defn validate
   [record keywords]
   (every? #(contains? record %) keywords))
+
+;; ----------
+;; Exercise 4.
+;; Write a function that will take your list of maps and convert it back to a CSV string.
+;; You’ll need to use the clojure.string/join function.
+;; ----------
+(defn suspects->csv
+  [suspects]
+  (clojure.string/join
+    "\n"
+    (map (fn [suspect]
+           (str (:name suspect) "," (:glitter-index suspect)))
+         suspects)))
