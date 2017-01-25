@@ -40,3 +40,14 @@
 (defn glitter-filter
   [minimum-glitter records]
   (filter #(>= (:glitter-index %) minimum-glitter) records))
+
+;; ----------
+;; Exercise 1.
+;; Turn the result of your glitter filter into a list of names.
+;; ----------
+(defn glittered-persons
+  "Expects a seq of maps like {:name \"\" :glitter-index 10} and converts it into a list"
+  [persons]
+  (map (fn [person]
+         (:name person))
+       persons))
