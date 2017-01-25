@@ -51,3 +51,12 @@
   (map (fn [person]
          (:name person))
        persons))
+
+;; ----------
+;; Exercise 2.
+;; Write a function, append, which will append a new suspect to your list of suspects.
+;; ----------
+(defn append
+  "Adds a new suspect to the list of suspects"
+  [suspects suspect]
+  (conj suspects suspect))
