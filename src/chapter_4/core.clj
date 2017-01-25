@@ -60,3 +60,13 @@
   "Adds a new suspect to the list of suspects"
   [suspects suspect]
   (conj suspects suspect))
+
+;; ----------
+;; Exercise 3.
+;; Write a function, validate, which will check that :name and :glitter-index are present when you append.
+;; The validate function should accept two arguments:
+;; a map of keywords to validating functions, similar to conversions, and the record to be validated.
+;; ----------
+(defn validate
+  [record keywords]
+  (every? #(contains? record %) keywords))
